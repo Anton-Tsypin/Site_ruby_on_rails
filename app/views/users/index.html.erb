@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <style type="text/css">
+            #centerLayer {
+            margin-left: 30%;
+            width: 40%;
+            background: #ffc591;
+            padding: 15px;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <h1 style="margin-top: 40px"></h1>
+
+        <div id="centerLayer">
+            <h1 style="margin-left: 31%" id="centerLayer">Авторизация</h1>
+            <div style="margin-left: 20.5%; width: 92%; margin-bottom: 5px; margin-top: 10px">
+                <input type="login" placeholder="Логин" aria-label="Логин">
+                <input type="password" style="margin-top: 1%" placeholder="Пароль" aria-label="Пароль">
+            </div>
+            <button type="submit" style="margin-top: 20px; margin-left: 39%; height:25px; width:20%">Вход</button>
+        </div>
+
+        <h1 style="margin-top: 40px"></h1>
+
+        <div id="centerLayer">
+            <h1 style="margin-left: 31%" id="centerLayer">Регистрация</h1>
+            <div style="margin-left: 20.5%; width: 92%; margin-bottom: 5px; margin-top: 10px">
+                <input type="login" placeholder="Имя" aria-label="Имя">
+                <input type="login" placeholder="Логин" aria-label="Логин">
+            </div>
+            <div style="margin-left: 20.5%; width: 92%; margin-bottom: 5px; margin-top: 10px">
+                <input type="password" style="margin-top: 1%" placeholder="Пароль" aria-label="Пароль">
+                <input type="password" style="margin-top: 1%" placeholder="Подтвердите пароль" aria-label="Подтвердите пароль">
+            </div>
+            <button type="submit" style="margin-top: 20px; margin-left: 39%; height:25px; width:20%">Регистрация</button>
+        </div>
+
+        <h1>Пользователи</h1>
+
+        <ul>
+        <% @users.each do |user| %>
+            <li>
+            <%= link_to user.login, user %>
+            </li>
+        <% end %>
+        </ul>
+
+    </body>
+</html>
