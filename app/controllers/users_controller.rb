@@ -7,9 +7,12 @@ class UsersController < ApplicationController
     end
 
     def show
+        if session[:user_id]
+            @user = User.find_by(id: session[:user_id])
+        end
         if params[:id].to_i <=  User.count
             @user = User.find(params[:id])
-        end
+        end 
     end
 
     def new
@@ -17,10 +20,10 @@ class UsersController < ApplicationController
     end
 
     def create
-        @user = User.new(user_params)
-
+        @user = User.new(reg_params)
         if @user.save
-            redirect_to @user
+            session[:user_id] = @user.id
+            redirect_to @user #root_path, notice: "Successfully created account!"
         else
             render :new, status: :unprocessable_entity
         end
@@ -31,7 +34,7 @@ class UsersController < ApplicationController
     end
 
     private
-        def user_params
+        def reg_params
             params.require(:user).permit(:name, :login, :password, :password_confirmation)
         end
 end

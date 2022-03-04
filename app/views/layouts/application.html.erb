@@ -10,10 +10,20 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body >
     <header>
-      <h1>test</h1>
+      <div style="margin-top:40px">
+        <b>
+        <%if @user%>
+          <a style="margin-left:0px" href="/users">Выход</a>
+          <a style="margin-left:20px"><%= @user.name%><a>
+        <%else%>
+          <a style="margin-left:0px" href="/users">Вход</a>
+          <a style="margin-left:20px" href="/users/999999999">Профиль</a>
+        <%end%>
+        <a style="margin-left:20px" href="/list">Список пользователей<a><b>
+      </div>
     </header>
+    <%= yield %>
   </body>
 </html>

@@ -3,5 +3,9 @@ Rails.application.routes.draw do
 
   root "users#index"
 
+  get '/list' => 'users#list'
+  get '/u' => 'users#show'
+  post '/sessions' => 'sessions#create'
+
   resources :users
 end

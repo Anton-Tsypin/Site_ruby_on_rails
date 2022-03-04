@@ -1,13 +1,14 @@
-<html>
+<!doctype html>
     <head>
-        <style type="text/css">
-            #centerLayer {
-            margin-left: 30%;
-            width: 40%;
-            background: #ffc591;
-            padding: 15px;
-            }
-        </style>
+
+    <style type="text/css">
+        #centerLayer {
+        margin-left: 30%;
+        width: 40%;
+        background: #ffc591;
+        padding: 15px;
+        }
+    </style>
     </head>
     
     <body>
@@ -37,25 +38,23 @@
             <button type="submit" style="margin-top: 20px; margin-left: 39%; height:25px; width:20%">Регистрация</button>
         </div-->
 
-        <h1>Авторизация</h2>
-        <div style="margin-top: 20px">
-            <a>Логин</a><br>
-            <input type="login">
-        </div>
-        <div style="margin-top: 20px">
-            <a>Пароль</a><br>
-            <input type="password">
-        </div>
 
-        <form action="/users" style="margin-top: 20px">
-            <button>Войти в аккаунт</button>
-        </form> 
+        <form action = '/sessions' method = 'POST'>
+            <h1>Авторизация</h2>
+            <input type = 'hidden' name = 'authenticity_token' value = '<%=form_authenticity_token%>'>
+            <div>
+                <a>Логин</a><br>
+                <input style="margin-bottom:20px" type = 'login' name = 'user[login]'><br>
+                <a >Пароль</a><br>
+                <input style="margin-bottom:20px" type = 'password' name = 'user[password]'><br>
+            </div>
+            <input type = 'submit' name = 'submit' value = 'Войти'>
+        </form>
+        
 
         <form action="/users/new" style="margin-top: 40px">
             <button>Перейти к регистрации</button>
         </form>
-
-        <p><a href="/list">Список пользователей</a></p>
 
     </body>
 </html>
