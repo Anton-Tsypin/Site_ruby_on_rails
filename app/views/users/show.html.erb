@@ -1,6 +1,10 @@
-<p>Имя пользователя: <%= @user.name %></p>
-<%if @user.id == session[:user_id]%>
-    <p>Это ваш профиль!</p>
-    <p>Логин: <%= @user.login %></p>
-    <p>Пароль: <%= @user.password %></p>
+<%if @user%>
+    <p>Имя пользователя: <%= @user.name %></p>
+    <%if @user.id == session[:user_id]%>
+        <p>Это ваш профиль!</p>
+        <p style="margin-top:40px">Логин: <%= @user.login %></p>
+        <p>Пароль: <%= @user.password %></p>
+    <%end%>
+<%else%>
+    <h1>Пользователь не найден</h1>
 <%end%>
