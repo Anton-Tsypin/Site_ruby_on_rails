@@ -14,12 +14,13 @@
     <header>
       <div style="margin-top:40px">
         <b>
-        <%if @user%>
+        <%if User.find_by(id:session[:user_id])%>
           <a style="margin-left:0px" href="/users">Выход</a>
-          <a style="margin-left:20px"><%= @user.name%><a>
+          <a style="margin-left:20px" href="/users/<%=session[:user_id]%>"> Вы вошли как: <%=User.find_by(id:session[:user_id]).name%><a>
         <%else%>
           <a style="margin-left:0px" href="/users">Вход</a>
-          <a style="margin-left:20px" href="/users/999999999">Профиль</a>
+          <a style="margin-left:20px" >Вы вошли как: Гость</a>
+          <!--a style="margin-left:20px" href="/users/999999999">Профиль</a-->
         <%end%>
         <a style="margin-left:20px" href="/list">Список пользователей<a><b>
       </div>

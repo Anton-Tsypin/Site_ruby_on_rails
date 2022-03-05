@@ -1,3 +1,6 @@
 <p>Имя пользователя: <%= @user.name %></p>
-<p>Логин: <%= @user.login %></p>
-<p>Пароль: <%= @user.password %></p>
+<%if @user.id == session[:user_id]%>
+    <p>Это ваш профиль!</p>
+    <p>Логин: <%= @user.login %></p>
+    <p>Пароль: <%= @user.password %></p>
+<%end%>
