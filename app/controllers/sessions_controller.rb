@@ -1,11 +1,9 @@
 class SessionsController < ApplicationController
     def create
-        if  User.find_by(login:login_params[:login])
-            if User.find_by(login:login_params[:login]).password == login_params[:password]
-                user = User.find_by(login:login_params[:login])
-                session[:user_id] = user.id
-                redirect_to user
-            end
+        user = User.find_by(login:login_params[:login])
+        if user && user.authenticate(login_params[:password])
+            session[:user_id] = user.id
+            redirect_to user
         end
     end
     private   

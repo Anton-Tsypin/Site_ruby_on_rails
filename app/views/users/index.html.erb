@@ -45,18 +45,10 @@
             <div>
                 <a>Логин</a><br>
                 <input style="margin-bottom:20px" type = 'login' name = 'user[login]'><br>
-                <a >Пароль</a><br>
+                <a>Пароль</a><br>
                 <input style="margin-bottom:20px" type = 'password' name = 'user[password]'><br>
             </div>
             <input type = 'submit' name = 'submit' value = 'Войти'>
-            
-            <% if flash[:login_errors] %>
-                <div class = 'alert alert-warning card-alert'>
-                    <% flash[:login_errors].each do |error|%>
-                        <p class = 'p md-3 fw-normal'><%= error %></p>
-                    <% end %>
-                </div>
-            <% end %>
         </form>
         
       

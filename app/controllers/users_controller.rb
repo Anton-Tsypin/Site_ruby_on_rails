@@ -6,11 +6,12 @@ class UsersController < ApplicationController
     end
 
     def show
-        if User.find_by(id:params[:id])
-            if User.find_by(id:params[:id]).id == session[:user_id]
-                @user = User.find_by(id:session[:user_id])
+        try = User.find_by(id:params[:id])
+        if try
+            if try.id == session[:user_id]
+                @user = try
             else
-                @user = User.find(params[:id])
+                @user = try
             end
         end
     end
@@ -31,9 +32,6 @@ class UsersController < ApplicationController
 
     def list
         @users = User.all
-        if session[:user_id]
-            @user = User.find_by(id:session[:user_id])
-        end
     end
 
     private
