@@ -50,8 +50,12 @@
             </div>
             <input type = 'submit' name = 'submit' value = 'Войти'>
         </form>
+
         
-      
+        <% if flash.alert %>
+            <p><%= flash.alert %></p>
+        <% end %>
+
 
         <form action="/users/new" style="margin-top: 40px">
             <button>Перейти к регистрации</button>

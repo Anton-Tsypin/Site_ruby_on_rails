@@ -2,18 +2,10 @@ class UsersController < ApplicationController
   
     def index
         @users = User.all
-        session.clear
     end
 
     def show
-        try = User.find_by(id:params[:id])
-        if try
-            if try.id == session[:user_id]
-                @user = try
-            else
-                @user = try
-            end
-        end
+        @user = User.find_by(id:params[:id])
     end
 
     def new
@@ -23,6 +15,7 @@ class UsersController < ApplicationController
     def create
         @user = User.new(reg_params)
         if @user.save
+            session.clear
             session[:user_id] = @user.id
             redirect_to @user
         else
