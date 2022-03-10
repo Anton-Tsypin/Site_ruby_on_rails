@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <style type="text/css">
+            #centerLayer {
+            margin-left: 30%;
+            width: 40%;
+            background: #ffc591;
+            padding: 15px;
+            }
+        </style>
+    </head>
+    
+    <body>
+       
+        <h1>Пользователи: <%= User.count %></h1>
+
+        <ul>
+        <% @users.each do |user| %>
+            <li>
+            <%= link_to user.login, user %>
+            </li>
+        <% end %>
+        </ul>
+
+    </body>
+</html>
