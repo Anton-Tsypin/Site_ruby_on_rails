@@ -22,6 +22,15 @@ class UsersController < ApplicationController
             render :new, status: :unprocessable_entity
         end
     end
+    
+    def destroy
+        if User.find_by(id:params[:id]).id == session[:user_id]
+            @user = User.find(params[:id])
+            @user.destroy
+    
+            redirect_to root_path
+        end
+    end
 
     def list
         @users = User.all
