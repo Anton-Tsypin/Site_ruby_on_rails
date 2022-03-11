@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/' => 'users#index'
 
   get '/users' => 'users#index'
-  get '/list' => 'users#list'
+  get '/users/list' => 'users#list'
   post '/sessions' => 'sessions#create'
 
   resources :users

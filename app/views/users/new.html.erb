@@ -2,46 +2,7 @@
 
 <a style="font-size:28px">Регистрация</a>
 
-<%= form_for(@user) do |form| %>
-
-  <div style="margin-top: 20px">
-    <%= form.label "Имя" %><br>
-    <%= form.text_field :name%>
-    <% @user.errors.full_messages_for(:name).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
-
-  <div style="margin-top: 20px">
-    <%= form.label "Логин" %><br>
-    <%= form.text_field :login %>
-    <% @user.errors.full_messages_for(:login).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
-
-  <div style="margin-top: 20px">
-    <label for="user_password">Пароль</label><br>
-    <input id="user_password" name="user[password]" type="password" />
-    <% @user.errors.full_messages_for(:password).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
-
-  <div style="margin-top: 20px">
-    <label for="user_password_confirmation">Подтверждение пароля</label><br>
-    <input id="user_password_confirmation" name="user[password_confirmation]" type="password" />
-    <% @user.errors.full_messages_for(:password_confirmation).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
-
-  <div style="margin-top: 20px">
-    <%= form.submit "Зарегистрировать аккаунт"%>
-  </div>
-
-
-<% end %>
+<%= render "form", user: @user %>
 
 <form action="/users" style="margin-top: 20px">
   <button>Перейти к авторизации</button>

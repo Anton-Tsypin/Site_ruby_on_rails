@@ -22,6 +22,20 @@ class UsersController < ApplicationController
             render :new, status: :unprocessable_entity
         end
     end
+
+    def edit
+        @user = User.find(params[:id]   )
+    end
+    
+    def update
+        @user = User.find(params[:id])
+    
+        if @user.update(reg_params)
+          redirect_to @user
+        else
+          render :edit, status: :unprocessable_entity
+        end
+    end
     
     def destroy
         if User.find_by(id:params[:id]).id == session[:user_id]
