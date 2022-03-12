@@ -8,7 +8,12 @@ Rails.application.routes.draw do
   get '/users/list' => 'users#list'
   post '/sessions' => 'sessions#create'
 
-  resources :users
+  post '/users/:id/posts' => 'posts#create'
+  get '/users/:id/posts' => 'users#show'
+  
+  resources :users do
+    resources :posts
+  end
   
   get '*path', to: 'errors#error_404', via: :all
 

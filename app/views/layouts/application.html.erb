@@ -13,14 +13,13 @@
   </head>
 
   <body style="background: #fff4e8">
-    <div class="header_back" ></div>
-    <header class="header_style">
-      <div>
+    <header class="header_back">
+      <div class="header_style">
         <%if User.find_by(id:session[:user_id])%>
           <a style="margin-left:0px;" href="/">Выход</a>
           <a style="margin-left:20px" href="/users/<%=session[:user_id]%>"> Вы вошли как: <%=User.find_by(id:session[:user_id]).name%><a>
         <%else%>
-          <a style="margin-left:0px; position: fixed;  left: 10%; top: 5%;" href="/">Вход</a>
+          <a style="margin-left:0px" href="/">Вход</a>
           <a style="margin-left:20px" >Вы вошли как: Гость</a>
         <%end%>
         <a style="margin-left:20px" href="/users/list">Список пользователей<a>

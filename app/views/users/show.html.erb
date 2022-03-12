@@ -1,19 +1,42 @@
 <body>
 
+<%if @user%>
     <div class="base_form">
-        <%if @user%>
-            <p>Имя пользователя: <%= @user.name %></p>
-            <%if @user.id == session[:user_id]%>
-                <p>Это ваш профиль!</p>
-                <p style="margin-top:40px">Логин: <%= @user.login %></p>
-                <p>Пароль: <%= @user.password %></p>
-            
-                <%= link_to "Редактировать профиль", edit_user_path(@user), data: { confirm: "Вы уверены?" }%>
-                <div style="margin-top:10px"><%= link_to "Удалить профиль", user_path(@user), method: :delete, data: { confirm: "Вы уверены?" } %></div>
-            <%end%>
-        <%else%>
-            <h1>Пользователь не найден</h1>
+        <p>Имя пользователя: <%= @user.name %></p>
+        <%if @user.id == session[:user_id]%>
+            <p>Это ваш профиль!</p>
+            <p style="margin-top:40px">Логин: <%= @user.login %></p>
+            <p>Пароль: <%= @user.password %></p>
+        
+            <%= link_to "Редактировать профиль", edit_user_path(@user), data: { confirm: "Вы уверены?" }%>
+            <div style="margin-top:10px"><%= link_to "Удалить профиль", user_path(@user), method: :delete, data: { confirm: "Вы уверены?" } %></div>
         <%end%>
     </div>
+
+    <div class="base_form" style="margin-top:2%">
+        <h2>Посты:</h2>
+        <% @user.posts.each do |post| %>
+
+        <p>
+            <%= post.body %>
+        </p>
+        <% end %>
+
+        <%if @user.id == session[:user_id] %>
+            <h2>Добавить пост:</h2>
+            <%= form_with model: [ @user, @user.posts.build ] do |form| %>
+            <p>
+                <%= form.label "Текст" %><br>
+                <%= form.text_area :body %>
+            </p>
+            <p>
+                <%= form.submit "Создать пост"%>
+            </p>
+            <% end %>
+        <% end %>
+    </div>
+<%else%>
+    <h1 class="base_form">Пользователь не найден</h1>
+<%end%>
 
 </body>
