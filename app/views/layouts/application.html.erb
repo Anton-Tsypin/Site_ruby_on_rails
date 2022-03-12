@@ -12,24 +12,26 @@
     <link rel="stylesheet" href="../assets/stylesheets/application.css">
   </head>
 
-  <body >
+  <body style="background: #fff4e8">
     <div class="header_back" ></div>
     <header class="header_style">
       <div>
-        <b>
         <%if User.find_by(id:session[:user_id])%>
-          <a style="margin-left:0px;" href="/users">Выход</a>
+          <a style="margin-left:0px;" href="/">Выход</a>
           <a style="margin-left:20px" href="/users/<%=session[:user_id]%>"> Вы вошли как: <%=User.find_by(id:session[:user_id]).name%><a>
         <%else%>
-          <a style="margin-left:0px" href="/users">Вход</a>
+          <a style="margin-left:0px; position: fixed;  left: 10%; top: 5%;" href="/">Вход</a>
           <a style="margin-left:20px" >Вы вошли как: Гость</a>
-          <!--a style="margin-left:20px" href="/users/999999999">Профиль</a-->
         <%end%>
-        <a style="margin-left:20px" href="/users/list">Список пользователей<a><b>
+        <a style="margin-left:20px" href="/users/list">Список пользователей<a>
       </div>
     </header>
-    <div class="circle" ></div>
-    <div class="rotate-shadows"></div>
+    
+
+    <div class="rotate-shadows" style="position: fixed; top: 15%; left: 10%;"></div>
+    <div class="rotate-shadows" style="position: fixed; top: 15%; left: 90%;"></div>
+
+
     <%= yield %>
   </body>
 </html>
