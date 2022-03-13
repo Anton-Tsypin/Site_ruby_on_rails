@@ -17,11 +17,10 @@
         <h2>Посты:</h2>
         <% @user.posts.each do |post| %>
 
-        <p>
-            <%= post.updated_at %>
-            <%= type(post.updated_at) %>
+        <div class="text_box" style="margin-top:10px">
+            <a class="small_text"><%= post.updated_at %><br><a>
             <%= post.body %>
-        </p>
+        </div>
         <% end %>
 
         <%if @user.id == session[:user_id] %>
@@ -29,7 +28,7 @@
             <%= form_with model: [ @user, @user.posts.build ] do |form| %>
             <p>
                 <%= form.label "Текст" %><br>
-                <%= form.text_area :body %>
+                <div><%= form.text_area :body%></div>
             </p>
             <p>
                 <%= form.submit "Создать пост"%>
