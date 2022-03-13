@@ -18,6 +18,8 @@
         <% @user.posts.each do |post| %>
 
         <p>
+            <%= post.updated_at %>
+            <%= type(post.updated_at) %>
             <%= post.body %>
         </p>
         <% end %>

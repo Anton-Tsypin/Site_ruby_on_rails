@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   get '/users/list' => 'users#list'
   post '/sessions' => 'sessions#create'
 
-  post '/users/:id/posts' => 'posts#create'
-  get '/users/:id/posts' => 'users#show'
+  #post '/users/:id/posts' => 'posts#create'
+  #get '/users/:id/posts' => 'users#show'
   
   resources :users do
     resources :posts
