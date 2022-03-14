@@ -1,7 +1,7 @@
 <body>
 
 <%if @user%>
-    <div class="base_form">
+    <div class="base_form" style="margin-top: 5%">
         <p>Имя пользователя: <%= @user.name %></p>
         <%if @user.id == session[:user_id]%>
             <p>Это ваш профиль!</p>
@@ -13,26 +13,22 @@
         <%end%>
     </div>
 
-    <div class="base_form" style="margin-top:2%">
+    <div class="base_form" style="margin-top: 2%">
         <h2>Посты:</h2>
+
         <% @user.posts.each do |post| %>
-
-        <div class="text_box" style="margin-top:10px">
-            <a class="small_text"><%= post.updated_at %><br><a>
-            <%= post.body %>
-        </div>
+            <div class="text_box">
+                <a class="small_text"><%= post.updated_at %><br><a>
+                <%= post.body %>
+            </div>
         <% end %>
-
+        <br>
         <%if @user.id == session[:user_id] %>
-            <h2>Добавить пост:</h2>
+            <h2>Создать новый пост:</h2>
+
             <%= form_with model: [ @user, @user.posts.build ] do |form| %>
-            <p>
-                <%= form.label "Текст" %><br>
-                <div><%= form.text_area :body%></div>
-            </p>
-            <p>
-                <%= form.submit "Создать пост"%>
-            </p>
+                <textarea id="post_body" name="post[body]" class="text_box", style="margin-top:0px; height:100px"></textarea>
+                <%= form.submit "Опубликовать!"%>
             <% end %>
         <% end %>
     </div>
