@@ -14,20 +14,24 @@
     </div>
 
     <div class="base_form" style="margin-top: 2%">
-        <h2>Посты:</h2>
 
+        <h2>Опубликованные посты:</h2>
         <% @user.posts.each do |post| %>
             <div class="text_box">
-                <a class="small_text"><%= post.updated_at %><br><a>
+                <a class="small_text"><%= post.updated_at %><a>
+                <a class="small_text" style="margin-left:5px; font-size: 14px;"><%= User.find_by(id:post.user_id).name %><a><br><br>
+                <a class="large_text" style="margin-top:10px; margin-bottom:10px;"><%= post.title %><a><br><br>
                 <%= post.body %>
             </div>
         <% end %>
         <br>
         <%if @user.id == session[:user_id] %>
             <h2>Создать новый пост:</h2>
-
             <%= form_with model: [ @user, @user.posts.build ] do |form| %>
-                <textarea id="post_body" name="post[body]" class="text_box", style="margin-top:0px; height:100px"></textarea>
+                <p style="margin-bottom:5px">Заголовок</p>
+                <textarea name="post[title]" class="text_box", style="margin-top:0px; height:20px"></textarea>
+                <p style="margin-bottom:5px; margin-top:0px">Текст</p>
+                <textarea name="post[body]" class="text_box", style="margin-top:0px; height:150px"></textarea>
                 <%= form.submit "Опубликовать!"%>
             <% end %>
         <% end %>

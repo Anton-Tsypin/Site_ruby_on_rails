@@ -23,14 +23,19 @@
     
 .small_text {
     font-size: 10px;
-    color: rgb(100, 100, 100);
+    color: rgb(80, 80, 80);
+}
+
+.large_text {
+    font-size: 24px;
+    color: rgb(0, 0, 0);
 }
 
 .text_box {
     background: #fbfeff;
     box-shadow: inset 0px 0px 4px rgba(200, 200, 200, 0.8);
     margin:20px auto;
-    padding:10px;
+    padding:15px;
     width:520px;
     word-wrap: break-word;
     font-family: 'Roboto', sans-serif;
@@ -61,13 +66,11 @@
     box-shadow: inset 0px 0px 10px rgba(154, 147, 140, 0.5);
     }
 
-
-
 .base_form{   
-    padding: 20px;
+    padding: 18px;
     margin-top: 5%;
     margin-left: 50%;
-    width: 540px;
+    width: 550px;
     -webkit-transform: translate(-50%, 0%);
     -ms-transform: translate(-50%, 0%);
     transform: translate(-50%, 0%);
