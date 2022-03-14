@@ -65,7 +65,7 @@
     background: linear-gradient(to top, #eaf9ff 0%, #f2fbff 100%);
     display: inline-block;
     box-shadow: inset 0px 0px 6px rgba(180, 180, 180, 0.8);
-    }
+}
 
 .base_form{   
     padding: 24px;
@@ -80,8 +80,6 @@
     box-shadow: inset 0px 0px 6px rgba(180, 180, 180, 0.8);
     }
 
-
-
 .circle{
     position: fixed; top: 15%; left: 90%;
     -webkit-transform: translate(-50%, 0%);
@@ -93,8 +91,6 @@
     margin: 0 auto;
     background: repeating-radial-gradient(circle, #B9ECFE, #B9ECFE 10px, #82DDFF 10px, #82DDFF 20px);
     }
-
-
 
 .rotate-shadows {
     position: fixed; top: 15%; left: 90%;
@@ -141,15 +137,3 @@
     50% {transform: rotateZ(-180deg) scaleX(0.95) scaleY(0.85);}
     100% {transform: rotateZ(-360deg) scaleX(1) scaleY(1);}
     }
-
-    
-.span-shadow {text-align:center}
-.span-shadow span {
-    display: inline-block;
-    margin: 15px;
-    padding: 20px 30px;
-    cursor: pointer;
-    border-radius: 10px;
-    color: white;
-    transition: .2s linear;
-}
