@@ -16,13 +16,13 @@
     <header class="header_back">
       <div class="header_style">
         <%if User.find_by(id:session[:user_id])%>
-          <a style="margin-left:0px;" href="/">Выход</a>
-          <a style="margin-left:20px" href="/users/<%=session[:user_id]%>"> Вы вошли как: <%=User.find_by(id:session[:user_id]).name%><a>
+          <a style="position: fixed; left: 51.5%; top:50%; transform: translate(-50%, -50%);" href="/users/<%=session[:user_id]%>"> Вы вошли как: <%=User.find_by(id:session[:user_id]).name%><a>
         <%else%>
-          <a style="margin-left:0px" href="/">Вход</a>
-          <a style="margin-left:20px" >Вы вошли как: Гость</a>
+          <a style="position: fixed; left: 51.5%; top:50%; transform: translate(-50%, -50%);" >Вы вошли как: Гость</a>
         <%end%>
-        <a style="margin-left:20px" href="/users/list">Список пользователей<a>
+        <a style="position: fixed; left: 31.5%; top:50%;  transform: translate(-50%, -50%);" href="/">Главная страница</a>
+        <a style="position: fixed; left: 41.5%; top:50%; transform: translate(-50%, -50%);" href="/users/login">Вход</a>
+        <a style="position: fixed; left: 66.5%; top:50%; transform: translate(-50%, -50%);" href="/users/list">Список пользователей<a>
       </div>
     </header>
     

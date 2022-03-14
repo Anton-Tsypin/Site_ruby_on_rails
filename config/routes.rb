@@ -6,7 +6,8 @@ Rails.application.routes.draw do
 
   get '/users' => 'users#index'
   get '/users/list' => 'users#list'
-  post '/sessions' => 'sessions#create'
+  get '/users/login' => 'users#login'
+  post '/users/login' => 'sessions#create'
   
   resources :users do
     resources :posts

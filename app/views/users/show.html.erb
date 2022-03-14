@@ -5,37 +5,34 @@
         <p>Имя пользователя: <%= @user.name %></p>
         <%if @user.id == session[:user_id]%>
             <p>Это ваш профиль!</p>
-            <p style="margin-top:40px">Логин: <%= @user.login %></p>
-            <p>Пароль: <%= @user.password %></p>
-        
+            <br>
             <%= link_to "Редактировать профиль", edit_user_path(@user), data: { confirm: "Вы уверены?" }%>
             <div style="margin-top:10px"><%= link_to "Удалить профиль", user_path(@user), method: :delete, data: { confirm: "Вы уверены?" } %></div>
         <%end%>
     </div>
 
-    <div class="base_form" style="margin-top: 2%">
+    <% if @user.posts.length != 0 %>
+        <div class="base_form" style="margin-top: 2%">
 
-        <h2>Опубликованные посты:</h2>
-        <% @user.posts.each do |post| %>
-            <div class="text_box">
-                <a class="small_text"><%= post.updated_at %><a>
-                <a class="small_text" style="margin-left:5px; font-size: 14px;"><%= User.find_by(id:post.user_id).name %><a><br><br>
-                <a class="large_text" style="margin-top:10px; margin-bottom:10px;"><%= post.title %><a><br><br>
-                <%= post.body %>
-            </div>
-        <% end %>
-        <br>
-        <%if @user.id == session[:user_id] %>
+            <h2>Опубликованные посты:</h2>
+            <% @user.posts.each do |post| %>
+                <%= render "form_post", post: post %>
+            <% end %>
+            <br>
+        </div>
+    <% end %>
+    <%if @user.id == session[:user_id] %>
+        <div class="base_form" style="margin-top: 2%">
             <h2>Создать новый пост:</h2>
             <%= form_with model: [ @user, @user.posts.build ] do |form| %>
                 <p style="margin-bottom:5px">Заголовок</p>
                 <textarea name="post[title]" class="text_box", style="margin-top:0px; height:20px"></textarea>
                 <p style="margin-bottom:5px; margin-top:0px">Текст</p>
-                <textarea name="post[body]" class="text_box", style="margin-top:0px; height:150px"></textarea>
+                <textarea name="post[body]" class="text_box", style="margin-top:0px; height:152px"></textarea>
                 <%= form.submit "Опубликовать!"%>
-            <% end %>
-        <% end %>
-    </div>
+                <% end %>
+        </div>
+    <% end %>
 <%else%>
     <h1 class="base_form">Пользователь не найден</h1>
 <%end%>

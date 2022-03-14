@@ -1,20 +1,15 @@
-<html>
-    <head>
-    </head>
+<body>
     
-    <body>
-       
-       <div class="base_form">
-            <a style="font-size:28px">Пользователи: <%= User.count %></a>
+    <div class="base_form">
+        <a style="font-size:28px">Пользователи: <%= User.count %></a>
 
-            <ul>
-            <% @users.each do |user| %>
-                <li>
-                <%= link_to user.name, user %>
-                </li>
-            <% end %>
-            </ul>
+        <ul>
+        <% @users.each do |user| %>
+            <li>
+            <%= link_to user.name, user %>
+            </li>
+        <% end %>
+        </ul>
 
-        </div>
-    </body>
-</html>
+    </div>
+</body>
