@@ -3,6 +3,7 @@
 <%if @user%>
     <div class="base_form" style="margin-top: 5%">
         <p>Имя пользователя: <%= @user.name %></p>
+        <p>Роль: <%= @user.role %></p>
         <%if @user.id == session[:user_id]%>
             <p>Это ваш профиль!</p>
             <br>
@@ -11,7 +12,8 @@
         <%end%>
     </div>
     
-    <%if @user.id == session[:user_id] %>
+
+    <%if @user.id == session[:user_id] and @user.role == "admin" or @user.role == "redactor"%>
         <div class="base_form" style="margin-top: 2%">
             <h2>Создать новый пост:</h2>
             <%= render "posts/form_post_create", user: @user %>
@@ -23,7 +25,7 @@
 
             <h2>Опубликованные посты:</h2>
             <% @posts.each do |post| %>
-                <% if post.id != nil %> <%= render "posts/form_post", post: post %> <% end %>
+                <% if post.id != nil %> <%= render "posts/form_post_show", post: post %> <% end %>
             <% end %>
             <div class = "center"> <%= paginate @posts %> </div>
         </div>

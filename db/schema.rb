@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_14_162651) do
+ActiveRecord::Schema.define(version: 2022_03_17_202904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2022_03_14_162651) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_confirmation"
     t.string "password_digest"
+    t.string "role"
   end
 
   add_foreign_key "posts", "users"

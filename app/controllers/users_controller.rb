@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find_by(id:params[:id])
-        @posts = @user.posts.page params[:page]
+        @posts = @user.posts.order(created_at: :desc).page params[:page]
     end
 
     def new
@@ -52,6 +52,6 @@ class UsersController < ApplicationController
 
     private
         def reg_params
-            params.require(:user).permit(:name, :login, :password, :password_confirmation)
+            params.require(:user).permit(:name, :role, :login, :password, :password_confirmation)
         end
 end

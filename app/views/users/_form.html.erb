@@ -33,6 +33,25 @@
   </div>
 
   <div style="margin-top: 20px">
+      <%= form.label "Роль" %><br>
+      <div>
+      <%= form.radio_button :role, 'reader'%>
+      <%= form.label :role, "Читатель", :value => "reader" %>
+      </div>
+      <div>
+      <%= form.radio_button :role, 'redactor'%>
+      <%= form.label :role, "Редактор", :value => "redactor" %>
+      </div>
+      <div>
+      <%= form.radio_button :role, 'admin'%>
+      <%= form.label :role, "Админ", :value => "admin" %>
+      </div>
+      <% user.errors.full_messages_for(:role).each do |message| %>
+        <div><%= message %></div> 
+      <% end %>
+  </div>
+
+  <div style="margin-top: 20px">
     <%= form.submit "Утвердить!"%>
   </div>
 

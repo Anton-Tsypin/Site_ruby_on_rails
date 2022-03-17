@@ -15,15 +15,16 @@ class PostsController < ApplicationController
 
     def edit
         @post = Post.find(params[:id])
+        @user = User.find_by(id:session[:user_id])
     end
 
     def update
         @post = Post.find(params[:id])
     
         if @post.update(post_params)
-          redirect_to @post
+            redirect_to @post
         else
-          render :edit, status: :unprocessable_entity
+            render :edit, status: :unprocessable_entity
         end
     end
 

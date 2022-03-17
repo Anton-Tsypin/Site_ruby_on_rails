@@ -2,8 +2,8 @@
     <% if session[:user_id] == @post.user_id %>
         <p>Это ваша статья!</p>
         <br>
-            <%= link_to "Редактировать профиль", edit_user_post_path(@post), data: { confirm: "Вы уверены?" }%>
+            <%= link_to "Редактировать профиль", edit_post_path(@post), data: { confirm: "Вы уверены?" }%>
         <div style="margin-top:10px"><%= link_to "Удалить Статью", post_path(@post), method: :delete, data: { confirm: "Вы уверены?" } %></div>
     <% end %>
-    <%= render "form_post", post: @post %>
+    <%= render "form_post_show", post: @post %>
 </div>
