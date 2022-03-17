@@ -20,7 +20,14 @@ body {
     font-size: 14px;
     font-weight: bold;
 }
-    
+
+.center{
+    position: fixed;  left: 50%;
+    -webkit-transform: translate(-50%, 0%);
+    -ms-transform: translate(-50%, 0%);
+    transform: translate(-50%, 0%);
+}
+
 .small_text {
     font-size: 10px;
     color: rgb(80, 80, 80);

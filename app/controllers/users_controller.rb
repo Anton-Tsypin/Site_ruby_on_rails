@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find_by(id:params[:id])
+        @posts = @user.posts.page params[:page]
     end
 
     def new
@@ -23,7 +24,7 @@ class UsersController < ApplicationController
     end
 
     def edit
-        @user = User.find(params[:id]   )
+        @user = User.find(params[:id])
     end
     
     def update
@@ -46,7 +47,7 @@ class UsersController < ApplicationController
     end
 
     def list
-        @users = User.all
+        @users = User.all.page params[:page]
     end
 
     private

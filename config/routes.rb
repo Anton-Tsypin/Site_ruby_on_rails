@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   post '/users/login' => 'sessions#create'
 
   get '/posts' => 'posts#index'
-  get '/posts/:id' => 'posts#show'
+  get '/posts/:id' => 'posts#show', as: 'post'
+  delete '/posts/:id' => 'posts#destroy'
   
   resources :users do
     resources :posts

@@ -22,9 +22,10 @@
         <div class="base_form" style="margin-top: 2%">
 
             <h2>Опубликованные посты:</h2>
-            <% @user.posts.each do |post| %>
+            <% @posts.each do |post| %>
                 <% if post.id != nil %> <%= render "posts/form_post", post: post %> <% end %>
             <% end %>
+            <div class = "center"> <%= paginate @posts %> </div>
         </div>
     <% end %>
 <%else%>

@@ -6,4 +6,5 @@ class User < ApplicationRecord
     validates :login, presence: true, uniqueness: { message: 'already exists'}, length: { minimum: 3 }
     validates :password, length: { minimum: 3 }, :confirmation => true
     validates :password_confirmation, :presence => true
+
 end
