@@ -5,11 +5,11 @@
 
         <ul>
         <% @posts.each do |post| %>
-            <li>
-                <a class="large_text" style="color: rgb(0, 0, 50);" href="/posts/<%= post.id %>"><%= post.title %></a>
+            <li style="margin-bottom:10px">
+                <a class="large_text" style="color: rgb(0, 0, 0); font-weight: 500;" href="/posts/<%= post.id %>"><%= post.title %></a>
             </li>
         <% end %>
         </ul>
-
+        <%= paginate @posts %>
     </div>
 </body>

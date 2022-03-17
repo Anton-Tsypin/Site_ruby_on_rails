@@ -10,27 +10,21 @@
             <div style="margin-top:10px"><%= link_to "Удалить профиль", user_path(@user), method: :delete, data: { confirm: "Вы уверены?" } %></div>
         <%end%>
     </div>
+    
+    <%if @user.id == session[:user_id] %>
+        <div class="base_form" style="margin-top: 2%">
+            <h2>Создать новый пост:</h2>
+            <%= render "posts/form_post_create", user: @user %>
+        </div>
+    <% end %>
 
-    <% if @user.posts.length != 0 %>
+    <% if @user.posts.length %>
         <div class="base_form" style="margin-top: 2%">
 
             <h2>Опубликованные посты:</h2>
             <% @user.posts.each do |post| %>
-                <%= render "form_post", post: post %>
+                <% if post.id != nil %> <%= render "posts/form_post", post: post %> <% end %>
             <% end %>
-            <br>
-        </div>
-    <% end %>
-    <%if @user.id == session[:user_id] %>
-        <div class="base_form" style="margin-top: 2%">
-            <h2>Создать новый пост:</h2>
-            <%= form_with model: [ @user, @user.posts.build ] do |form| %>
-                <p style="margin-bottom:5px">Заголовок</p>
-                <textarea name="post[title]" class="text_box", style="margin-top:0px; height:20px"></textarea>
-                <p style="margin-bottom:5px; margin-top:0px">Текст</p>
-                <textarea name="post[body]" class="text_box", style="margin-top:0px; height:152px"></textarea>
-                <%= form.submit "Опубликовать!"%>
-                <% end %>
         </div>
     <% end %>
 <%else%>

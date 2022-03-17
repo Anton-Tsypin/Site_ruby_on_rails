@@ -2,5 +2,5 @@
     <% if session[:user_id] == @post.user_id %>
         <a>Это ваша статья!</a>
     <% end %>
-    <%= render "users/form_post", post: @post %>
+    <%= render "form_post", post: @post %>
 </div>

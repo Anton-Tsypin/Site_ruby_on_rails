@@ -13,7 +13,7 @@
   </head>
 
   <body style="background: #fff4e8">
-    <header class="header_back">
+    <header class="header_form">
       <div class="header_style">
         <%if User.find_by(id:session[:user_id])%>
           <a style="position: fixed; left: 51.5%; top:50%; transform: translate(-50%, -50%);" href="/users/<%=session[:user_id]%>"> Вы вошли как: <%=User.find_by(id:session[:user_id]).name%><a>
@@ -35,5 +35,6 @@
 
 
     <%= yield %>
+    
   </body>
 </html>
