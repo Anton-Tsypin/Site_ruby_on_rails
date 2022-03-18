@@ -5,8 +5,10 @@ class PostsController < ApplicationController
     end
 
     def create
-        @post = Post.create(user_id:session[:user_id], body:post_params[:body], title:post_params[:title])
-        redirect_to user_path(session[:user_id])
+        if ["redactor", "admin"].include? User.find_by(id:session[:user_id]).role
+            @post = Post.create(user_id:session[:user_id], body:post_params[:body], title:post_params[:title])
+            redirect_to user_path(session[:user_id])
+        end
     end
     
     def show

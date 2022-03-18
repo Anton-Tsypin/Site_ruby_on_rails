@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   get '/users' => 'users#login'
   get '/users/list' => 'users#list'
 
-  get '/users/login' => 'users#login'
+  get '/users/login' => 'users#login', as: 'login_user'
+  get '/users/clear' => 'users#clear'
+  get '/users/:id/increase' => 'users#increase', as: 'increase_user'
+  get '/users/:id/decrease' => 'users#decrease', as: 'decrease_user'
   post '/users/login' => 'sessions#create'
 
   get '/posts' => 'posts#index'

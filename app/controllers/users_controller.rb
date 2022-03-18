@@ -45,9 +45,36 @@ class UsersController < ApplicationController
             redirect_to root_path
         end
     end
+    
+    def increase
+        @user = User.find_by(id:params[:id])
+        case @user.role
+        when "reader"
+            user.update_attribute(:role, "readactor")
+        when "redactor"
+            user.update_attribute(:role, "admin")
+        end
+        redirect_to user_path(@user)
+    end
+    
+    def decrease
+        user = User.find_by(id:params[:id])
+        case user.role
+        when "admin"
+            user.update_attribute(:role, "redactor")
+        when "redactor"
+            user.update_attribute(:role, "reader")
+        end
+        redirect_to user_path(user)
+    end
 
     def list
         @users = User.all.page params[:page]
+    end
+
+    def clear
+        session.clear
+        redirect_to login_user_path
     end
 
     private

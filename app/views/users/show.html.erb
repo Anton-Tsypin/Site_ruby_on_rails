@@ -10,10 +10,21 @@
             <%= link_to "Редактировать профиль", edit_user_path(@user), data: { confirm: "Вы уверены?" }%>
             <div style="margin-top:10px"><%= link_to "Удалить профиль", user_path(@user), method: :delete, data: { confirm: "Вы уверены?" } %></div>
         <%end%>
+        <% if User.find_by(id:session[:user_id]).role == "admin" %>
+            <br>
+            <% if @user.role != "admin" %>
+                <br>
+                <%= link_to "Повысить роль", increase_user_path(@user), data: { confirm: "Вы уверены?" }%>
+            <% end %>
+            <% if @user.role != "reader" %>
+                <br>
+                <%= link_to "Понизить роль", decrease_user_path(@user), data: { confirm: "Вы уверены?" }%>
+            <% end %>
+            <%= flash.alert%>
+        <% end %>
     </div>
-    
 
-    <%if @user.id == session[:user_id] and @user.role == "admin" or @user.role == "redactor"%>
+    <%if ["redactor", "admin"].include? @user.role %>
         <div class="base_form" style="margin-top: 2%">
             <h2>Создать новый пост:</h2>
             <%= render "posts/form_post_create", user: @user %>
@@ -22,12 +33,15 @@
 
     <% if @user.posts.length %>
         <div class="base_form" style="margin-top: 2%">
-
-            <h2>Опубликованные посты:</h2>
+        <%if @user.role == "reader" %>
+        <h2>Вы не можете писать статьи!</h2>
+        <%else%>
+            <h2>Опубликованные статьи:</h2>
             <% @posts.each do |post| %>
                 <% if post.id != nil %> <%= render "posts/form_post_show", post: post %> <% end %>
             <% end %>
             <div class = "center"> <%= paginate @posts %> </div>
+        <%end%>
         </div>
     <% end %>
 <%else%>
