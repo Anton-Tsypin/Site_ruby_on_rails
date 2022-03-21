@@ -1,13 +1,15 @@
 class PostsController < ApplicationController
 
     def index
-        @posts = Post.order(created_at: :desc).page params[:page]
+        @posts = Post.order(updated_at: :desc).page params[:page]
     end
 
     def create
         if ["redactor", "admin"].include? User.find_by(id:session[:user_id]).role
             @post = Post.create(user_id:session[:user_id], body:post_params[:body], title:post_params[:title])
             redirect_to user_path(session[:user_id])
+        else
+            redirect_to '/error_role'
         end
     end
     
@@ -16,8 +18,13 @@ class PostsController < ApplicationController
     end
 
     def edit
-        @post = Post.find(params[:id])
-        @user = User.find_by(id:session[:user_id])
+        if ["redactor", "admin"].include? User.find_by(id:session[:user_id]).role
+            @post = Post.find(params[:id])
+            @user = User.find_by(id:session[:user_id])
+            
+        else
+            redirect_to '/error_role'
+        end
     end
 
     def update
@@ -31,11 +38,13 @@ class PostsController < ApplicationController
     end
 
     def destroy
-        if Post.find_by(id:params[:id]).user_id == session[:user_id]
+        if ["redactor", "admin"].include? User.find_by(id:session[:user_id]).role
             @post = Post.find(params[:id])
             @post.destroy
     
             redirect_to root_path
+        else
+            redirect_to '/error_role'
         end
     end
 

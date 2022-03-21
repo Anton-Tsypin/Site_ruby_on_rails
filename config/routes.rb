@@ -9,9 +9,8 @@ Rails.application.routes.draw do
 
   get '/users/login' => 'users#login', as: 'login_user'
   get '/users/clear' => 'users#clear'
-  get '/users/:id/increase' => 'users#increase', as: 'increase_user'
-  get '/users/:id/decrease' => 'users#decrease', as: 'decrease_user'
   post '/users/login' => 'sessions#create'
+  post '/users/:id/change_role' => 'users#change_role'
 
   get '/posts' => 'posts#index'
   get '/posts/:id' => 'posts#show', as: 'post'
@@ -26,6 +25,7 @@ Rails.application.routes.draw do
     resources :posts
   end
   
+  get '/error_role' => 'errors#error_role'
   get '*path', to: 'errors#error_404', via: :all
 
 end

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find_by(id:params[:id])
-        @posts = @user.posts.order(created_at: :desc).page params[:page]
+        @posts = @user.posts.order(updated_at: :desc).page params[:page]
     end
 
     def new
@@ -38,23 +38,23 @@ class UsersController < ApplicationController
     end
     
     def destroy
-        if User.find_by(id:params[:id]).id == session[:user_id]
-            @user = User.find(params[:id])
-            @user.destroy
+        user = User.find_by(id:params[:id])
+        if user and user.id == session[:user_id]
+            user.destroy
     
-            redirect_to root_path
+            redirect_to login_user_path
         end
     end
     
     def increase
-        @user = User.find_by(id:params[:id])
-        case @user.role
+        user = User.find_by(id:params[:id])
+        case user.role
         when "reader"
-            user.update_attribute(:role, "readactor")
+            user.update_attribute(:role, "redactor")
         when "redactor"
             user.update_attribute(:role, "admin")
         end
-        redirect_to user_path(@user)
+        redirect_to user_path(user)
     end
     
     def decrease
@@ -68,8 +68,20 @@ class UsersController < ApplicationController
         redirect_to user_path(user)
     end
 
+    def change_role
+        if ["redactor", "admin"].include? User.find_by(id:session[:user_id]).role
+            @user = User.find_by(id:params[:id])
+            if @user
+                @user.update_attribute(:role, reg_params[:role])
+            end
+            redirect_to user_path
+        else
+            redirect_to '/error_role'
+        end
+    end
+
     def list
-        @users = User.all.page params[:page]
+        @users = User.order(created_at: :asc).page params[:page]
     end
 
     def clear
